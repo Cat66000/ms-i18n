@@ -4,6 +4,18 @@ class EN {
         this.client = client;
 
         this.name = "en";
+
+        this.dShortStr = "d";
+        this.hShortStr = "h";
+        this.mShortStr = "m";
+        this.sShortStr = "s";
+        this.msShortStr = "ms";
+
+        this.dLongStr = "day";
+        this.hLongStr = "hour";
+        this.mLongStr = "minute";
+        this.sLongStr = "second";
+        this.msLongStr = "millisecond";
     }
 
     parse(str) {

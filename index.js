@@ -1,6 +1,7 @@
 /**
  * Symbols.
  */
+
 const _plural = Symbol("plural");
 const _fmtShort = Symbol("fmtShort");
 const _fmtLong = Symbol("fmtLong");
@@ -10,13 +11,9 @@ class MS {
 
   constructor(locale = "en") {
     try {
-      this[_locale] = new (require(locale))(this);
-    } catch (e) {
-      try {
-        this[_locale] = new (require(`./locales/${locale}.js`))(this);
-      } catch (e2) {
-        this[_locale] = new (require(`./locales/en.js`))(this);
-      }
+      this[_locale] = new (require(`./locales/${locale}.js`))(this);
+    } catch (e2) {
+      this[_locale] = new (require(`./locales/en.js`))(this);
     }
 
     this.locale = this[_locale].name;
@@ -80,18 +77,18 @@ class MS {
   [_fmtShort](ms) {
     const msAbs = Math.abs(ms);
     if (msAbs >= this.d) {
-      return `${Math.round(ms / this.d)}d`;
+      return `${Math.round(ms / this.d)}${this[_locale].dShortStr}`;
     }
     if (msAbs >= this.h) {
-      return `${Math.round(ms / this.h)}h`;
+      return `${Math.round(ms / this.h)}${this[_locale].hShortStr}`;
     }
     if (msAbs >= this.m) {
-      return `${Math.round(ms / this.m)}m`;
+      return `${Math.round(ms / this.m)}${this[_locale].mShortStr}`;
     }
     if (msAbs >= this.s) {
-      return `${Math.round(ms / this.s)}s`;
+      return `${Math.round(ms / this.s)}${this[_locale].sShortStr}`;
     }
-    return `${ms}ms`;
+    return `${ms}${this[_locale].msShortStr}`;
   }
 
   /**
@@ -105,18 +102,19 @@ class MS {
   [_fmtLong](ms) {
     const msAbs = Math.abs(ms);
     if (msAbs >= this.d) {
-      return this[_plural](ms, msAbs, this.d, 'day');
+      return this[_plural](ms, msAbs, this.d, this[_locale].dLongStr);
     }
     if (msAbs >= this.h) {
-      return this[_plural](ms, msAbs, this.h, 'hour');
+      return this[_plural](ms, msAbs, this.h, this[_locale].hLongStr);
     }
     if (msAbs >= this.m) {
-      return this[_plural](ms, msAbs, this.m, 'minute');
+      return this[_plural](ms, msAbs, this.m, this[_locale].mLongStr);
     }
     if (msAbs >= this.s) {
-      return this[_plural](ms, msAbs, this.s, 'second');
+      return this[_plural](ms, msAbs, this.s, this[_locale].sLongStr);
     }
-    return `${ms} ms`;
+
+    return this[_plural](ms, msAbs, 1, this[_locale].msLongStr);
   }
 
 }

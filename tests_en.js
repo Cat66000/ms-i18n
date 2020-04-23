@@ -140,9 +140,9 @@ describe('ms.format(number, { long: true })', () => {
   });
 
   it('should support milliseconds', () => {
-    expect(ms.format(500, { long: true })).to.be('500 ms');
+    expect(ms.format(500, { long: true })).to.be('500 milliseconds');
 
-    expect(ms.format(-500, { long: true })).to.be('-500 ms');
+    expect(ms.format(-500, { long: true })).to.be('-500 milliseconds');
   });
 
   it('should support seconds', () => {

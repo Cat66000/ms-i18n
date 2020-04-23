@@ -1,9 +1,10 @@
 # ms
 
-[![Build Status](https://travis-ci.org/zeit/ms.svg?branch=master)](https://travis-ci.org/zeit/ms)
-[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/zeit)
+[Join the community on Discord](https://discord.gg/c2XXr5J)
 
 Use this package to easily convert various time formats to milliseconds.
+
+##Initialising
 
 ## Examples
 
