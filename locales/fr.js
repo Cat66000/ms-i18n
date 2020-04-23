@@ -44,9 +44,9 @@ class FR {
             case "sems":
             case "sem":
                 return n * this.client.w;
-            case "days":
-            case "day":
-            case "d":
+            case "jours":
+            case "jour":
+            case "j":
                 return n * this.client.d;
             case "heures":
             case "heure":

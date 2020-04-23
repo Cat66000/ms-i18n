@@ -5,7 +5,8 @@
   "repository": "Cat66000/ms",
   "main": "./index.js",
   "scripts": {
-    "test_en": "mocha tests_en.js"
+    "test_en": "mocha tests_en.js",
+    "test_fr": "mocha tests_fr.js"
   },
   "license": "MIT",
   "devDependencies": {
