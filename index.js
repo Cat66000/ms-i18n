@@ -2,14 +2,24 @@
  * Symbols.
  */
 const _plural = Symbol("plural");
-const _parse = Symbol("parse");
 const _fmtShort = Symbol("fmtShort");
 const _fmtLong = Symbol("fmtLong");
+const _locale = Symbol("locale");
 
 class MS {
 
-  constructor(lang = "en") {
-    // this.lang = require(`./langs/${lang}.json`);
+  constructor(locale = "en") {
+    try {
+      this[_locale] = new (require(locale))(this);
+    } catch (e) {
+      try {
+        this[_locale] = new (require(`./locales/${locale}.js`))(this);
+      } catch (e2) {
+        this[_locale] = new (require(`./locales/en.js`))(this);
+      }
+    }
+
+    this.locale = this[_locale].name;
 
     /**
      * Helpers.
@@ -41,7 +51,7 @@ class MS {
     options = options || {};
     const type = typeof val;
     if (type === 'string' && val.length > 0) {
-      return this[_parse](val);
+      return this[_locale].parse(val);
     } else if (type === 'number' && isFinite(val)) {
       return options.long ? this[_fmtLong](val) : this[_fmtShort](val);
     }
@@ -60,76 +70,12 @@ class MS {
   }
 
   /**
-   * Parse the given `str` and return milliseconds.
+   * Short format for `ms`.
    *
-   * @param {String} str
-   * @return {Number}
+   * @param {Number} ms
+   * @return {String}
    * @api private
    */
-
-  [_parse](str) {
-    str = String(str);
-    if (str.length > 100) {
-      return;
-    }
-    const match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
-      str
-    );
-    if (!match) {
-      return;
-    }
-    const n = parseFloat(match[1]);
-    const type = (match[2] || 'ms').toLowerCase();
-    switch (type) {
-      case 'years':
-      case 'year':
-      case 'yrs':
-      case 'yr':
-      case 'y':
-        return n * this.y;
-      case 'weeks':
-      case 'week':
-      case 'w':
-        return n * this.w;
-      case 'days':
-      case 'day':
-      case 'd':
-        return n * this.d;
-      case 'hours':
-      case 'hour':
-      case 'hrs':
-      case 'hr':
-      case 'h':
-        return n * this.h;
-      case 'minutes':
-      case 'minute':
-      case 'mins':
-      case 'min':
-      case 'm':
-        return n * this.m;
-      case 'seconds':
-      case 'second':
-      case 'secs':
-      case 'sec':
-      case 's':
-        return n * this.s;
-      case 'milliseconds':
-      case 'millisecond':
-      case 'msecs':
-      case 'msec':
-      case 'ms':
-        return n;
-      default:
-        return undefined;
-    }
-  }
-  /**
- * Short format for `ms`.
- *
- * @param {Number} ms
- * @return {String}
- * @api private
- */
 
   [_fmtShort](ms) {
     const msAbs = Math.abs(ms);

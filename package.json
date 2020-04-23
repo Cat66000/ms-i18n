@@ -1,14 +1,14 @@
 {
-  "name": "ms",
-  "version": "2.1.2",
-  "description": "Tiny millisecond conversion utility",
+  "name": "ms-i18n",
+  "version": "1.0.0",
+  "description": "A fork of ms, a tiny millisecond conversion utility. This fork supports multiple languages.",
   "repository": "Cat66000/ms",
   "main": "./index",
   "files": [
     "index.js"
   ],
   "scripts": {
-    "test": "mocha tests.js"
+    "test_en": "mocha tests_en.js"
   },
   "license": "MIT",
   "devDependencies": {
