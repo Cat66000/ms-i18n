@@ -10,8 +10,10 @@ const _locale = Symbol("locale");
 class MS {
 
   constructor(locale = "en") {
+    locale = locale.toString();
+
     try {
-      this[_locale] = new (require(`./locales/${locale}.js`))(this);
+      this[_locale] = new (require(`./locales/${locale.toLowerCase()}.js`))(this);
     } catch (e2) {
       this[_locale] = new (require(`./locales/en.js`))(this);
     }
