@@ -12,11 +12,14 @@ Use this package to easily convert various time formats to milliseconds.
 
 ```js
 const MSi18n = require("ms-i18n");
-const ms = new MSi18n(language) // replace language with "en" (english), "fr" (french) or "es" (spanish);
+
+// replace language with "en" (english), "fr" (french) or "es" (spanish);
+const ms = new MSi18n(language) 
 
 // You can also do it like this (much simpler) :
 
-const ms = new (require("ms-i18n"))(language); // replace language with "en" (english), "fr" (french) or "es" (spanish);
+// replace language with "en" (english), "fr" (french) or "es" (spanish);
+const ms = new (require("ms-i18n"))(language); 
 ```
 
 ### Basic usage
@@ -59,9 +62,14 @@ ms.format(ms.format('10 hours'), { long: true });   // "10 hours"
 ### Lang-related properties
 
 ```js
-ms.langIsoCode // Returns the ISO 639-1 code for this lang
-ms.langName // Returns the name of the lang, in the lang itself
-ms.langEnglishName // Returns the english name for this lang
+// Returns the ISO 639-1 code for this lang
+ms.langIsoCode
+
+ // Returns the name of the lang, in the lang itself
+ms.langName
+
+// Returns the english name for this lang
+ms.langEnglishName
 ```
 
 ## Features
