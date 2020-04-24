@@ -1,6 +1,6 @@
 # ms-i18n
 
-[Cat66's Discord server](https://discord.gg/c2XXr5J)
+[Join the community on Discord](https://discord.gg/c2XXr5J)
 
 A fork of [ms](https://www.npmjs.com/package/ms) that supports multiple languages (also named as locales).
 
