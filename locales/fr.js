@@ -3,7 +3,9 @@ class FR {
     constructor(client) {
         this.client = client;
 
-        this.name = "fr";
+        this.isoCode = "fr";
+        this.englishName = "french";
+        this.name = "français";
 
         this.dShortStr = "j";
         this.hShortStr = "h";

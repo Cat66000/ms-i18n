@@ -17,7 +17,9 @@ class MS {
       this[_locale] = new (require(`./locales/en.js`))(this);
     }
 
-    this.locale = this[_locale].name;
+    this.langIsoCode = this[_locale].isoCode;
+    this.langEnglishName = this[_locale].englishName;
+    this.langName = this[_locale].name;
 
     /**
      * Helpers.

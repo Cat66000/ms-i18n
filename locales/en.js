@@ -3,7 +3,9 @@ class EN {
     constructor(client) {
         this.client = client;
 
-        this.name = "en";
+        this.isoCode = "en";
+        this.englishName = "english";
+        this.name = this.englishName;
 
         this.dShortStr = "d";
         this.hShortStr = "h";

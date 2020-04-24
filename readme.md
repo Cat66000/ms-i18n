@@ -1,61 +1,86 @@
-# ms
+# ms-i18n
 
 [Join the community on Discord](https://discord.gg/c2XXr5J)
 
-Use this package to easily convert various time formats to milliseconds.
+A fork of [ms](https://www.npmjs.com/package/ms) that supports multiple languages (also named as locales).
 
-##Initialising
+Use this package to easily convert various time formats to milliseconds.
 
 ## Examples
 
+### Initialising
+
 ```js
-ms('2 days')  // 172800000
-ms('1d')      // 86400000
-ms('10h')     // 36000000
-ms('2.5 hrs') // 9000000
-ms('2h')      // 7200000
-ms('1m')      // 60000
-ms('5s')      // 5000
-ms('1y')      // 31557600000
-ms('100')     // 100
-ms('-3 days') // -259200000
-ms('-1h')     // -3600000
-ms('-200')    // -200
+const MSi18n = require("ms-i18n");
+const ms = new MSi18n(language) // replace language with "en" (english), "fr" (french) or "es" (spanish);
+
+// You can also do it like this (much simpler) :
+
+const ms = new (require("ms-i18n"))(language); // replace language with "en" (english), "fr" (french) or "es" (spanish);
+```
+
+### Basic usage
+
+Note : These examples are only for the english language (it may change in the future)
+
+```js
+ms.format('2 days');    // 172800000
+ms.format('1d');        // 86400000
+ms.format('10h');       // 36000000
+ms.format('2.5 hrs');   // 9000000
+ms.format('2h');        // 7200000
+ms.format('1m');        // 60000
+ms.format('5s');        // 5000
+ms.format('1y');        // 31557600000
+ms.format('100');       // 100
+ms.format('-3 days');   // -259200000
+ms.format('-1h');       // -3600000
+ms.format('-200');      // -200
 ```
 
 ### Convert from Milliseconds
 
 ```js
-ms(60000)             // "1m"
-ms(2 * 60000)         // "2m"
-ms(-3 * 60000)        // "-3m"
-ms(ms('10 hours'))    // "10h"
+ms.format(60000);                   // "1m"
+ms.format(2 * 60000);               // "2m"
+ms.format(-3 * 60000);              // "-3m"
+ms.format(ms.format('10 hours'));   // "10h"
 ```
 
 ### Time Format Written-Out
 
 ```js
-ms(60000, { long: true })             // "1 minute"
-ms(2 * 60000, { long: true })         // "2 minutes"
-ms(-3 * 60000, { long: true })        // "-3 minutes"
-ms(ms('10 hours'), { long: true })    // "10 hours"
+ms.format(60000, { long: true });                   // "1 minute"
+ms.format(2 * 60000, { long: true });               // "2 minutes"
+ms.format(-3 * 60000, { long: true });              // "-3 minutes"
+ms.format(ms.format('10 hours'), { long: true });   // "10 hours"
+```
+
+### Lang-related properties
+
+```js
+ms.langIsoCode // Returns the ISO 639-1 code for this lang
+ms.langName // Returns the name of the lang, in the lang itself
+ms.langEnglishName // Returns the english name for this lang
 ```
 
 ## Features
 
-- Works both in [Node.js](https://nodejs.org) and in the browser
-- If a number is supplied to `ms`, a string with a unit is returned
+- Works only with [Node.js](https://nodejs.org) actually, but in the future we will make it works with browser
+- If a number is supplied, a string with a unit is returned
 - If a string that contains the number is supplied, it returns it as a number (e.g.: it returns `100` for `'100'`)
 - If you pass a string with a number and a valid unit, the number of equivalent milliseconds is returned
 
-## Related Packages
+## Caught a bug / want to add language that isn't available ?
 
-- [ms.macro](https://github.com/knpwrs/ms.macro) - Run `ms` as a macro at build-time.
+**If you know how to fork :**
 
-## Caught a Bug?
-
-1. [Fork](https://help.github.com/articles/fork-a-repo/) this repository to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device
+1. [Fork](https://help.github.com/articles/fork-a-repo/) this [repository](https://github.com/Cat66000/ms-i18n) to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device
 2. Link the package to the global module directory: `npm link`
-3. Within the module you want to test your local development instance of ms, just link it to the dependencies: `npm link ms`. Instead of the default one from npm, Node.js will now use your clone of ms!
+3. Within the module you want to test your local development instance of ms-i18n, just link it to the dependencies: `npm link ms-i18n`. Instead of the default one from npm, Node.js will now use your clone of ms-i18n!
 
 As always, you can run the tests using: `npm test`
+
+**If you don't know how to fork :**
+
+You can still create an [issue](https://github.com/Cat66000/ms-i18n/issues) in the repository

@@ -3,4 +3,4 @@ npm-debug.log
 tests_*.js
 .eslintrc.json
 package-lock.json
-
+.vscode/
