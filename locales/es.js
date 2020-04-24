@@ -32,17 +32,15 @@ class ES {
         if (str.length > 100) {
             return;
         }
-        console.log(str);
+
         const match = /^(-?(?:\d+)?\.?\d+) *(milisegundos?|msegs?|ms|segundos?|segs?|s|minutos?|mins?|m|horas?|hrs?|h|d\u00edas?|dias?|d|semanas?|sems?|a\u00f1os?|anos?|ans?|a)?$/i.exec(
             str
         );
 
         if (!match) return;
-        console.log(match);
 
         const n = parseFloat(match[1]),
             type = (match[2] || "ms").toLowerCase();
-console.log(n);
         switch (type) {
             case "a\u00f1os":
             case "anos":
@@ -50,13 +48,11 @@ console.log(n);
             case "ano":
             case "an":
             case "a":
-                console.log("a");
                 return n * this.client.y;
             case "semanas":
             case "semana":
             case "sems":
             case "sem":
-                console.log("sem");
                 return n * this.client.w;
             case "d\u00edas":
             case "dias":
@@ -70,28 +66,24 @@ console.log(n);
             case "hrs":
             case "hr":
             case "h":
-                console.log("h");
                 return n * this.client.h;
             case "minutos":
             case "minuto":
             case "mins":
             case "min":
             case "m":
-                console.log("m");
                 return n * this.client.m;
             case "segundos":
             case "segundo":
             case "segs":
             case "seg":
             case "s":
-                console.log("s");
                 return n * this.client.s;
             case "milisegundos":
             case "milisegundo":
             case "msegs":
             case "mseg":
             case "ms":
-                console.log("ms");
                 return n;
             default:
                 return undefined;

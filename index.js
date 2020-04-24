@@ -70,22 +70,18 @@ class MS {
   [_fmtShort](ms) {
     const msAbs = Math.abs(ms);
     if (msAbs >= this.d) {
-      console.log("short d");
       return `${Math.round(ms / this.d)}${this[_locale].dShortStr}`;
     }
     if (msAbs >= this.h) {
-      console.log("short h");
       return `${Math.round(ms / this.h)}${this[_locale].hShortStr}`;
     }
     if (msAbs >= this.m) {
-      console.log("short m");
       return `${Math.round(ms / this.m)}${this[_locale].mShortStr}`;
     }
     if (msAbs >= this.s) {
-      console.log("short s");
       return `${Math.round(ms / this.s)}${this[_locale].sShortStr}`;
     }
-    console.log("short ms");
+
     return `${ms}${this[_locale].msShortStr}`;
   }
 
@@ -100,22 +96,17 @@ class MS {
   [_fmtLong](ms) {
     const msAbs = Math.abs(ms);
     if (msAbs >= this.d) {
-      console.log("long d");
       return this[_locale].plural(ms, msAbs, this.d, this[_locale].dLongStr);
     }
     if (msAbs >= this.h) {
-      console.log("long h");
       return this[_locale].plural(ms, msAbs, this.h, this[_locale].hLongStr);
     }
     if (msAbs >= this.m) {
-      console.log("long m");
       return this[_locale].plural(ms, msAbs, this.m, this[_locale].mLongStr);
     }
     if (msAbs >= this.s) {
-      console.log("long s");
       return this[_locale].plural(ms, msAbs, this.s, this[_locale].sLongStr);
     }
-    console.log("long ms");
     return this[_locale].plural(ms, msAbs, 1, this[_locale].msLongStr);
   }
 
