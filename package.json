@@ -1,6 +1,6 @@
 {
   "name": "ms-i18n",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A fork of ms, a tiny millisecond conversion utility. This fork supports multiple languages.",
   "repository": "Cat66000/ms",
   "main": "./index.js",
