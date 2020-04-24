@@ -18,6 +18,16 @@ class FR {
         this.msLongStr = "milliseconde";
     }
 
+
+    /**
+     * Pluralization helper.
+     */
+
+    plural(ms, msAbs, n, name) {
+        const isPlural = msAbs >= n * 1.5;
+        return `${Math.round(ms / n)} ${name}${isPlural ? 's' : ''}`;
+    }
+
     parse(str) {
         str = String(str);
         if (str.length > 100) {
