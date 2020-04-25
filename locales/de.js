@@ -18,6 +18,15 @@ class DE {
         this.msLongStr = "Millisekunde";
     }
 
+    /**
+     * Pluralization helper.
+     */
+
+    plural(ms, msAbs, n, name) {
+        const isPlural = msAbs >= n * 1.5;
+        return `${Math.round(ms / n)} ${name}${isPlural ? (name.endsWith('e') ? 'n' : 'e') : ''}`;
+    }
+
     parse(str) {
         str = String(str);
         if (str.length > 100) {
@@ -63,11 +72,6 @@ class DE {
             default:
                 return undefined;
         }
-    }
-    
-    plural(ms, msAbs, n, name) {
-        const isPlural = msAbs >= n * 1.5;
-        return `${Math.round(ms / n)} ${name}${isPlural ? (name.endsWith('e') ? 'n' : 'e') : ''}`;
     }
 
 }
