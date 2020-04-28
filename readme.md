@@ -8,18 +8,27 @@ Use this package to easily convert various time formats to milliseconds.
 
 ## Examples
 
+### Available languages
+
+- fr (french)
+- en (english)
+- es (spanish)
+- pt (portuguese)
+
+**ms-i18n only works with the two letters long code (iso 639-1 code), not the full name of a lang**
+
 ### Initialising
 
 ```js
 const MSi18n = require("ms-i18n");
 
-// replace language with "en" (english), "fr" (french) or "es" (spanish);
-const ms = new MSi18n(language) 
+// replace lang with an iso 639-1 code
+const ms = new MSi18n(lang) 
 
 // You can also do it like this (much simpler) :
 
-// replace language with "en" (english), "fr" (french) or "es" (spanish);
-const ms = new (require("ms-i18n"))(language); 
+// replace lang with an iso 639-1 code
+const ms = new (require("ms-i18n"))(lang); 
 ```
 
 ### Basic usage

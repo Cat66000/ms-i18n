@@ -14,7 +14,7 @@ class MS {
     try {
       this[_locale] = new (require(`./locales/${locale.toLowerCase()}.js`))(this);
     } catch (e2) {
-      this[_locale] = new (require(`./locales/en.js`))(this);
+      throw new Error(`ms-i18n: the locale ${locale} doesn't exists`);
     }
 
     this.langIsoCode = this[_locale].isoCode;
@@ -56,7 +56,7 @@ class MS {
       return options.long ? this[_fmtLong](val) : this[_fmtShort](val);
     }
     throw new Error(
-      `val is not a non-empty string or a valid number. val=${
+      `ms-i18n: val is not a non-empty string or a valid number. val=${
       JSON.stringify(val)}`
     );
   }
