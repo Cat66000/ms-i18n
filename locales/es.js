@@ -48,7 +48,6 @@ class ES {
             case "anos":
             case "a\u00f1o":
             case "ano":
-            case "an":
             case "a":
                 return n * this.client.y;
             case "semanas":
