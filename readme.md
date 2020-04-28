@@ -83,18 +83,18 @@ ms.langEnglishName
 
 ## Features
 
-- Works only with [Node.js](https://nodejs.org) actually, but in the future we will make it works with browser
-- If a number is supplied, a string with a unit is returned
-- If a string that contains the number is supplied, it returns it as a number (e.g.: it returns `100` for `'100'`)
-- If you pass a string with a number and a valid unit, the number of equivalent milliseconds is returned
+-   Works only with [Node.js](https://nodejs.org) actually, but in the future we will make it works with browser
+-   If a number is supplied, a string with a unit is returned
+-   If a string that contains the number is supplied, it returns it as a number (e.g.: it returns `100` for `'100'`)
+-   If you pass a string with a number and a valid unit, the number of equivalent milliseconds is returned
 
 ## Caught a bug / want to add language that isn't available ?
 
 **If you know how to fork :**
 
-1. [Fork](https://help.github.com/articles/fork-a-repo/) this [repository](https://github.com/Cat66000/ms-i18n) to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device
-2. Link the package to the global module directory: `npm link`
-3. Within the module you want to test your local development instance of ms-i18n, just link it to the dependencies: `npm link ms-i18n`. Instead of the default one from npm, Node.js will now use your clone of ms-i18n!
+1.  [Fork](https://help.github.com/articles/fork-a-repo/) this [repository](https://github.com/Cat66000/ms-i18n) to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device
+2.  Link the package to the global module directory: `npm link`
+3.  Within the module you want to test your local development instance of ms-i18n, just link it to the dependencies: `npm link ms-i18n`. Instead of the default one from npm, Node.js will now use your clone of ms-i18n!
 
 As always, you can run the tests using: `npm test`
 
