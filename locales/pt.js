@@ -4,8 +4,8 @@ class ES {
         this.client = client;
 
         this.isoCode = "es";
-        this.englishName = "spanish";
-        this.name = "español";
+        this.englishName = "portuguese";
+        this.name = "português";
 
         this.dShortStr = "d";
         this.hShortStr = "h";
@@ -13,11 +13,11 @@ class ES {
         this.sShortStr = "s";
         this.msShortStr = "ms";
 
-        this.dLongStr = "día";
+        this.dLongStr = "dia";
         this.hLongStr = "hora";
         this.mLongStr = "minuto";
         this.sLongStr = "segundo";
-        this.msLongStr = "milisegundo";
+        this.msLongStr = "milissegundo";
     }
 
     /**
@@ -35,7 +35,7 @@ class ES {
             return;
         }
 
-        const match = /^(-?(?:\d+)?\.?\d+) *(milisegundos?|msegs?|ms|segundos?|segs?|s|minutos?|mins?|m|horas?|hrs?|h|d\u00edas?|dias?|d|semanas?|sems?|a\u00f1os?|anos?|a)?$/i.exec(
+        const match = /^(-?(?:\d+)?\.?\d+) *(milissegundos?|msegs?|ms|segundos?|segs?|s|minutos?|mins?|m|horas?|hrs?|h|dias?|d|semanas?|sems?|anos?|a)?$/i.exec(
             str
         );
 
@@ -44,9 +44,7 @@ class ES {
         const n = parseFloat(match[1]),
             type = (match[2] || "ms").toLowerCase();
         switch (type) {
-            case "a\u00f1os":
             case "anos":
-            case "a\u00f1o":
             case "ano":
             case "an":
             case "a":
@@ -56,9 +54,7 @@ class ES {
             case "sems":
             case "sem":
                 return n * this.client.w;
-            case "d\u00edas":
             case "dias":
-            case "d\u00eda":
             case "dia":
             case "d":
                 return n * this.client.d;
@@ -80,8 +76,8 @@ class ES {
             case "seg":
             case "s":
                 return n * this.client.s;
-            case "milisegundos":
-            case "milisegundo":
+            case "milissegundos":
+            case "milissegundo":
             case "msegs":
             case "mseg":
             case "ms":
