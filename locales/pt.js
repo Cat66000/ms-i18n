@@ -5,7 +5,7 @@ class ES {
 
         this.isoCode = "es";
         this.englishName = "portuguese";
-        this.name = "português";
+        this.name = "portugues";
 
         this.dShortStr = "d";
         this.hShortStr = "h";
