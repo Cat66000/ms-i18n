@@ -32,7 +32,8 @@
   "scripts": {
     "test_en": "mocha tests_en.js",
     "test_fr": "mocha tests_fr.js",
-    "test_es": "mocha tests_es.js"
+    "test_es": "mocha tests_es.js",
+    "test_pt": "mocha tests_pt.js"
   },
   "license": "MIT",
   "devDependencies": {

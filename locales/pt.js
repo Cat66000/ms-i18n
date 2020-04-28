@@ -1,4 +1,4 @@
-class ES {
+class PT {
 
     constructor(client) {
         this.client = client;
@@ -89,4 +89,4 @@ class ES {
 
 }
 
-module.exports = ES;
+module.exports = PT;
