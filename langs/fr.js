@@ -30,20 +30,13 @@ class FR {
         return `${Math.round(ms / n)} ${name}${isPlural ? 's' : ''}`;
     }
 
-    parse(str) {
-        str = String(str);
-        if (str.length > 100) {
-            return;
-        }
-        const match = /^(-?(?:\d+)?\.?\d+) *(millisecondes?|msecs?|ms|secondes?|secs?|s|minutes?|mins?|m|heures?|hrs?|h|jours?|j|semaines?|sems?|années?|ans?|a)?$/i.exec(
+    match(str) {
+        return /^(-?(?:\d+)?\.?\d+) *(millisecondes?|msecs?|ms|secondes?|secs?|s|minutes?|mins?|m|heures?|hrs?|h|jours?|j|semaines?|sems?|années?|ans?|a)?$/i.exec(
             str
         );
+    }
 
-        if (!match) return;
-
-        const n = parseFloat(match[1]),
-            type = (match[2] || "ms").toLowerCase();
-
+    switch(type, n) {
         switch (type) {
             case "années":
             case "année":

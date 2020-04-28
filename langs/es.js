@@ -29,20 +29,13 @@ class ES {
         return `${Math.round(ms / n)} ${name}${isPlural ? 's' : ''}`;
     }
 
-    parse(str) {
-        str = String(str);
-        if (str.length > 100) {
-            return;
-        }
-
-        const match = /^(-?(?:\d+)?\.?\d+) *(milisegundos?|msegs?|ms|segundos?|segs?|s|minutos?|mins?|m|horas?|hrs?|h|d\u00edas?|dias?|d|semanas?|sems?|a\u00f1os?|anos?|a)?$/i.exec(
+    match(str) {
+        return /^(-?(?:\d+)?\.?\d+) *(milisegundos?|msegs?|ms|segundos?|segs?|s|minutos?|mins?|m|horas?|hrs?|h|d\u00edas?|dias?|d|semanas?|sems?|a\u00f1os?|anos?|a)?$/i.exec(
             str
         );
+    }
 
-        if (!match) return;
-
-        const n = parseFloat(match[1]),
-            type = (match[2] || "ms").toLowerCase();
+    switch(type, n) {
         switch (type) {
             case "a\u00f1os":
             case "anos":

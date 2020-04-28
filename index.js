@@ -2,9 +2,10 @@
  * Symbols.
  */
 
-const _fmtShort = Symbol("fmtShort");
-const _fmtLong = Symbol("fmtLong");
-const _locale = Symbol("locale");
+const _fmtShort = Symbol("fmtShort"),
+  _fmtLong = Symbol("fmtLong"),
+  _locale = Symbol("locale"),
+  _parse = Symbol("parse");
 
 class MS {
 
@@ -12,9 +13,9 @@ class MS {
     locale = locale.toString();
 
     try {
-      this[_locale] = new (require(`./locales/${locale.toLowerCase()}.js`))(this);
-    } catch (e2) {
-      throw new Error(`ms-i18n: the locale ${locale} doesn't exists`);
+      this[_locale] = new (require(`./langs/${locale.toLowerCase()}.js`))(this);
+    } catch (e) {
+      throw new Error(e);
     }
 
     this.langIsoCode = this[_locale].isoCode;
@@ -51,7 +52,7 @@ class MS {
     options = options || {};
     const type = typeof val;
     if (type === 'string' && val.length > 0) {
-      return this[_locale].parse(val);
+      return this[_parse](val);
     } else if (type === 'number' && isFinite(val)) {
       return options.long ? this[_fmtLong](val) : this[_fmtShort](val);
     }
@@ -110,6 +111,22 @@ class MS {
       return this[_locale].plural(ms, msAbs, this.s, this[_locale].sLongStr);
     }
     return this[_locale].plural(ms, msAbs, 1, this[_locale].msLongStr);
+  }
+
+  [_parse](str) {
+    str = String(str);
+    if (str.length > 100) {
+      return;
+    }
+
+    const match = this[_locale].match(str);
+
+    if (!match) return;
+
+    const n = parseFloat(match[1]),
+      type = (match[2] || "ms").toLowerCase();
+
+    return this[_locale].switch(type, n);
   }
 
 }
