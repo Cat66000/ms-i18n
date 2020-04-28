@@ -10,10 +10,10 @@ Use this package to easily convert various time formats to milliseconds.
 
 ### Available languages
 
-- fr (french)
-- en (english)
-- es (spanish)
-- pt (portuguese)
+-   fr (french)
+-   en (english)
+-   es (spanish)
+-   pt (portuguese)
 
 **ms-i18n only works with the two letters long code (iso 639-1 code), not the full name of a lang**
 
@@ -90,7 +90,7 @@ ms.langEnglishName
 
 ## Caught a bug / want to add language that isn't available ?
 
-**If you know how to fork :**
+### If you know how to fork :**
 
 1.  [Fork](https://help.github.com/articles/fork-a-repo/) this [repository](https://github.com/Cat66000/ms-i18n) to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device
 2.  Link the package to the global module directory: `npm link`
@@ -98,6 +98,6 @@ ms.langEnglishName
 
 As always, you can run the tests using: `npm test`
 
-**If you don't know how to fork :**
+### If you don't know how to fork :**
 
 You can still create an [issue](https://github.com/Cat66000/ms-i18n/issues) in the repository
