@@ -6,7 +6,8 @@
   "main": "./index.js",
   "scripts": {
     "test_en": "mocha tests_en.js",
-    "test_fr": "mocha tests_fr.js"
+    "test_fr": "mocha tests_fr.js",
+    "test_de": "mocha tests_de.js"
   },
   "license": "MIT",
   "devDependencies": {

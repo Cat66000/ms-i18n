@@ -2,10 +2,10 @@
  * Symbols.
  */
 
-const _plural = Symbol("plural");
-const _fmtShort = Symbol("fmtShort");
-const _fmtLong = Symbol("fmtLong");
-const _locale = Symbol("locale");
+const _fmtShort = Symbol("fmtShort"),
+  _fmtLong = Symbol("fmtLong"),
+  _locale = Symbol("locale"),
+  _parse = Symbol("parse");
 
 class MS {
 
@@ -13,12 +13,14 @@ class MS {
     locale = locale.toString();
 
     try {
-      this[_locale] = new (require(`./locales/${locale.toLowerCase()}.js`))(this);
-    } catch (e2) {
-      this[_locale] = new (require(`./locales/en.js`))(this);
+      this[_locale] = new (require(`./langs/${locale.toLowerCase()}.js`))(this);
+    } catch (e) {
+      throw new Error(e);
     }
 
-    this.locale = this[_locale].name;
+    this.langIsoCode = this[_locale].isoCode;
+    this.langEnglishName = this[_locale].englishName;
+    this.langName = this[_locale].name;
 
     /**
      * Helpers.
@@ -49,23 +51,15 @@ class MS {
   format(val, options) {
     options = options || {};
     const type = typeof val;
-    if (type === 'string' && val.length > 0) {
-      return this[_locale].parse(val);
-    } else if (type === 'number' && isFinite(val)) {
+    if (type === "string" && val.length > 0) {
+      return this[_parse](val);
+    } else if (type === "number" && isFinite(val)) {
       return options.long ? this[_fmtLong](val) : this[_fmtShort](val);
     }
     throw new Error(
-      `val is not a non-empty string or a valid number. val=${
+      `ms-i18n: val is not a non-empty string or a valid number. val=${
       JSON.stringify(val)}`
     );
-  }
-  /**
-   * Pluralization helper.
-   */
-
-  [_plural](ms, msAbs, n, name) {
-    const isPlural = msAbs >= n * 1.5;
-    return `${Math.round(ms / n)} ${name}${isPlural ? 's' : ''}`;
   }
 
   /**
@@ -90,6 +84,7 @@ class MS {
     if (msAbs >= this.s) {
       return `${Math.round(ms / this.s)}${this[_locale].sShortStr}`;
     }
+
     return `${ms}${this[_locale].msShortStr}`;
   }
 
@@ -104,19 +99,34 @@ class MS {
   [_fmtLong](ms) {
     const msAbs = Math.abs(ms);
     if (msAbs >= this.d) {
-      return this[_plural](ms, msAbs, this.d, this[_locale].dLongStr);
+      return this[_locale].plural(ms, msAbs, this.d, this[_locale].dLongStr);
     }
     if (msAbs >= this.h) {
-      return this[_plural](ms, msAbs, this.h, this[_locale].hLongStr);
+      return this[_locale].plural(ms, msAbs, this.h, this[_locale].hLongStr);
     }
     if (msAbs >= this.m) {
-      return this[_plural](ms, msAbs, this.m, this[_locale].mLongStr);
+      return this[_locale].plural(ms, msAbs, this.m, this[_locale].mLongStr);
     }
     if (msAbs >= this.s) {
-      return this[_plural](ms, msAbs, this.s, this[_locale].sLongStr);
+      return this[_locale].plural(ms, msAbs, this.s, this[_locale].sLongStr);
+    }
+    return this[_locale].plural(ms, msAbs, 1, this[_locale].msLongStr);
+  }
+
+  [_parse](str) {
+    str = String(str);
+    if (str.length > 100) {
+      return;
     }
 
-    return this[_plural](ms, msAbs, 1, this[_locale].msLongStr);
+    const match = this[_locale].match(str);
+
+    if (!match) return;
+
+    const n = parseFloat(match[1]),
+      type = (match[2] || "ms").toLowerCase();
+
+    return this[_locale].switch(type, n);
   }
 
 }
