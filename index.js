@@ -56,9 +56,7 @@ class MS {
 			return options.long ? this[_fmtLong](val) : this[_fmtShort](val);
 		}
 		throw new Error(
-			`ms-i18n: val is not a non-empty string or a valid number. val=${JSON.stringify(
-				val
-			)}`
+			`ms-i18n: val is not a non-empty string or a valid number. val=${JSON.stringify(val)}`
 		);
 	}
 
