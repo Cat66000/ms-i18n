@@ -2,13 +2,13 @@
  * Symbols.
  */
 
-const _fmtShort = Symbol("fmtShort"),
-	_fmtLong = Symbol("fmtLong"),
-	_locale = Symbol("locale"),
-	_parse = Symbol("parse");
+const _fmtShort = Symbol('fmtShort'),
+	_fmtLong = Symbol('fmtLong'),
+	_locale = Symbol('locale'),
+	_parse = Symbol('parse');
 
 class MS {
-	constructor(locale = "en") {
+	constructor(locale = 'en') {
 		locale = locale.toString();
 
 		try {
@@ -50,9 +50,9 @@ class MS {
 	format(val, options) {
 		options = options || {};
 		const type = typeof val;
-		if (type === "string" && val.length > 0) {
+		if (type === 'string' && val.length > 0) {
 			return this[_parse](val);
-		} else if (type === "number" && isFinite(val)) {
+		} else if (type === 'number' && isFinite(val)) {
 			return options.long ? this[_fmtLong](val) : this[_fmtShort](val);
 		}
 		throw new Error(
@@ -124,7 +124,7 @@ class MS {
 		}
 
 		const n = parseFloat(match[1]),
-			type = (match[2] || "ms").toLowerCase();
+			type = (match[2] || 'ms').toLowerCase();
 
 		return this[_locale].switch(type, n);
 	}
