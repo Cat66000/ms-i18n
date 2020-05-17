@@ -24,9 +24,7 @@
 		],
 		"getter-return": "off",
 		"no-await-in-loop": "warn",
-		"no-extra-parens": "warn",
 		"no-template-curly-in-string": "error",
-		"require-atomic-updates": "error",
 		"accessor-pairs": "warn",
 		"array-callback-return": "error",
 		"curly": [
@@ -34,7 +32,6 @@
 			"all"
 		],
 		"default-case": "error",
-		"default-case-last": "warn",
 		"default-param-last": "warn",
 		"dot-location": [
 			"error",
